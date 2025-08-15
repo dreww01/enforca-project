@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Registration</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <form id="form" action="/" autocomplete="off">
+            <h1>User Registration</h1>
+            <div class="input-control">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" placeholder="Enter your username" required />
+                <div class="error"></div>
+            </div>
+            <div class="input-control">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Enter your email" required />
+                <div class="error"></div>
+            </div>
+            <div class="input-control">
+                <label for="password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" name="password" id="password" placeholder="Enter your password" required />
+                    <button type="button" id="toggle-password" aria-label="Toggle password visibility">
+                        Show
+                    </button>
+                </div>
+                <div class="error"></div>
+            </div>
+            <div class="input-control">
+                <label for="password2">Confirm Password</label>
+                <div class="password-wrapper">
+                    <input type="password" name="password2" id="password2" placeholder="Confirm your password"
+                        required />
+                    <button type="button" id="toggle-password2" aria-label="Toggle confirm password visibility">
+                        Show
+                    </button>
+                </div>
+                <div class="error"></div>
+            </div>
+            <button type="submit" id="submit" cursor="pointer">Sign Up</button>
+        </form>
+    </div>
+</body>
+
+</html>
