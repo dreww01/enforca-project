@@ -1,7 +1,9 @@
 # FastAPI and dependencies
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
+from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
 
 # JSON user storage
 import json
@@ -44,10 +46,10 @@ class RegisterRequest(BaseModel):
     name: str
     username: str
     password: str
-    email: str
+    email: EmailStr
 
 class LoginRequest(BaseModel):
-    email: str
+    email: EmailStr
     password: str
 
 
@@ -56,15 +58,27 @@ class VerifyOTPRequest(BaseModel):
     otp: str
 
 class ResendOTPRequest(BaseModel):
-    email: str
+    email: EmailStr
 
 class LogoutRequest(BaseModel):
-    email: str
+    email: EmailStr
 
 
 class VerifyLoginOTPRequest(BaseModel):
-    email: str
+    email: EmailStr
     otp: str
+
+
+# exception handler function for validation errors from pydantic
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+
+    logging.error(f"Validation error: {exc.errors()} | Body: {exc.body}")
+    
+    return JSONResponse(
+        status_code=422,
+        content={"error": "Invalid input. Please check your data, and put the correct data."}
+    )
 
 
 # ---------------- HELPERS ----------------
