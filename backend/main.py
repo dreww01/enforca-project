@@ -269,8 +269,9 @@ def login(request: LoginRequest):
         user["otp_expiry"] = otp_expiry
         save_users(users)
 
+        # Send email to user
         message = f"Your login OTP code is: {otp}, code expires in 10 minutes."
-        send_email(user["email"], "Login Verification OTP", message)  # See section 2!
+        send_email(user["email"], "Login Verification OTP", message) 
 
         logging.info(f"Login OTP sent to user with email '{request.email}'. OTP: {otp}")
         return {"message": "OTP sent to your email. Please verify to complete login."}
