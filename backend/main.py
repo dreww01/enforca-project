@@ -74,17 +74,22 @@ def generate_otp():
     return OTP
     
 
-# Send email using local Mailhog SMTP server for testing
-SMTP_HOST = "localhost"
-SMTP_PORT = 1025 
+# Send email using GMAIL SMTP server
+SENDER_MAIL = os.getenv("EMAIL_USER", "")
+SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
+SMTP_PORT = int(os.getenv("SMTP_PORT", 587))
+
 
 def send_email(to_email, subject, message):
     msg = MIMEText(message)
     msg["Subject"] = subject
-    msg["From"] = "noreply@example.com"
+    msg["From"] = SENDER_MAIL
     msg["To"] = to_email
+
     try:
         with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+            server.starttls()
+            server.login(SENDER_MAIL, os.getenv("EMAIL_PASSWORD"))
             server.sendmail(msg["From"], [to_email], msg.as_string())
         logging.info(f"Email sent to {to_email} with subject '{subject}'")
     except Exception as e:
