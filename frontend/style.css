@@ -1,94 +1,236 @@
 body {
-    background: #e8eaf6;
-    font-family: "Poppins", sans-serif;
-    margin: 0;
+  background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%);
+  font-family: "Poppins", sans-serif;
+  margin: 0;
 }
 
-#form {
-    width: 500px;
-    margin: 10vh auto 0;
-    padding: 24px;
-    background: #fff;
-    border-radius: 8px;
-    font-size: 13px;
-    box-shadow: 0 2px 8px rgba(109,109,234,0.08);
+.container {
+  width: 100%;
+  max-width: 500px;
+  margin: 8vh auto 0;
+  padding: 0 16px;
 }
 
-#form h1 {
-    color: #222;
-    text-align: center;
-    margin-bottom: 18px;
-    font-size: 1.5em;
-    font-weight: 500;
+form {
+  background: #fff;
+  border-radius: 10px;
+  font-size: 14px;
+  box-shadow: 0 2px 12px rgba(109, 109, 234, 0.1);
+  box-sizing: border-box;
+  padding: 32px 24px 24px 24px;
+  margin-bottom: 0;
+  transition: opacity 0.4s;
+}
+
+form h1 {
+  color: #222;
+  text-align: center;
+  margin-bottom: 22px;
+  font-size: 1.7em;
+  font-weight: 600;
 }
 
 label {
-    color: #222;
-    font-size: 15px;
-    margin-bottom: 6px;
+  color: #222;
+  font-size: 15px;
+  margin-bottom: 6px;
 }
 
 .input-control {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
 }
 
 .input-control input {
-    border: 2px solid #f0f0f0;
-    border-radius: 5px;
-    font-size: 17px;
-    width: 90%;
-    padding: 8px 12px;
-    background: #f9f9fc;
-    outline: none;
-    transition: border 0.2s;
+  border: 2px solid #f0f0f0;
+  border-radius: 6px;
+  font-size: 17px;
+  width: 100%;
+  padding: 10px 14px;
+  background: #f9f9fc;
+  outline: none;
+  transition: border 0.2s;
+  box-sizing: border-box;
 }
 
 .input-control input:focus {
-    border-color: #6d6dea;
+  border-color: #6d6dea;
+}
+
+.password-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.password-wrapper input {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.password-wrapper button {
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  color: #fff;
+  background: #6d6dea;
+  border-radius: 5px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.password-wrapper button:hover {
+  background: #4b4be0;
+}
+
+#submit,
+#login-btn {
+  padding: 12px;
+  margin-top: 16px;
+  color: #fff;
+  background: #6d6dea;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+  font-weight: 500;
+}
+
+#submit:hover,
+#login-btn:hover {
+  background: #4b4be0;
+}
+
+.error {
+  color: #e53935;
+  font-size: 13px;
+  margin-top: 4px;
+  min-height: 18px;
+}
+
+p {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 15px;
+}
+
+a {
+  color: #6d6dea;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #4b4be0;
+  text-decoration: underline;
 }
 
 .password-group {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .password-group input {
-    flex: 1;
-    margin-bottom: 0;
+  flex: 1;
+  margin-bottom: 0;
 }
 
-#toggle-password, #toggle-password2 {
-    border: none;
-    outline: none;
-    padding: 8px 12px;
-    color: #fff;
-    background: #6d6dea;
-    border: none;
-    border-radius: 5px;
-    font-size: 13px;
-    cursor: pointer;
-    transition: background 0.2s;
+#toggle-password,
+#toggle-password2 {
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  color: #fff;
+  background: #6d6dea;
+  border: none;
+  border-radius: 5px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
-#toggle-password:hover, #toggle-password2:hover {
-    background: #4b4be0;
+#toggle-password:hover,
+#toggle-password2:hover {
+  background: #4b4be0;
 }
 
 #submit {
-    padding: 10px;
-    margin-top: 12px;
-    color: #fff;
-    background: #6d6dea;
-    border: none;
-    border-radius: 5px;
-    font-size: 15px;
-    cursor: pointer;
-    transition: background 0.2s;
+  padding: 10px;
+  margin-top: 12px;
+  color: #fff;
+  background: #6d6dea;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
 #submit:hover {
-    background: #4b4be0;
+  background: #4b4be0;
 }
+
+/* EMAIL OTP PAGE */
+.otp-container {
+        max-width: 400px;
+        margin: 10vh auto;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 12px rgba(109, 109, 234, 0.1);
+        padding: 32px 24px;
+      }
+      .otp-input {
+        width: 100%;
+        font-size: 2em;
+        text-align: center;
+        letter-spacing: 12px;
+        padding: 12px;
+        border: 2px solid #f0f0f0;
+        border-radius: 6px;
+        box-sizing: border-box;
+      }
+      .otp-label {
+        font-size: 1.1em;
+        margin-bottom: 12px;
+        display: block;
+        text-align: center;
+      }
+      .email-display {
+        text-align: center;
+        margin-bottom: 18px;
+        color: #6d6dea;
+        font-weight: 500;
+      }
+      .resend-link {
+        display: block;
+        text-align: center;
+        margin-top: 18px;
+        color: #6d6dea;
+        text-decoration: none;
+        font-weight: 500;
+        cursor: pointer;
+      }
+      .resend-link:hover {
+        color: #4b4be0;
+        text-decoration: underline;
+      }
+      .verify-btn {
+        width: 100%;
+        padding: 12px;
+        background: #6d6dea;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 1em;
+        cursor: pointer;
+        margin-top: 18px;
+      }
+      .verify-btn:hover {
+        background: #4b4be0;
+      }

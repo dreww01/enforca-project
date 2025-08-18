@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Email Authentication</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+
+<body>
+  <div class="otp-container">
+    <h2>Email Verification</h2>
+    <div class="email-display" id="user-email">user@example.com</div>
+    <label for="otp" class="otp-label">Enter 6-digit code</label>
+    <input type="text" id="otp" class="otp-input" maxlength="6" pattern="\d{6}" autocomplete="off"
+      placeholder="------" />
+    <button class="verify-btn">Verify</button>
+    <a href="#" class="resend-link" id="resend">Resend code</a>
+  </div>
+</body>
+
+</html>

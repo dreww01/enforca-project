@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+.env
+*.sqlite3
+*.db
+*.log
+
+# VS Code
+.vscode/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+
+# Environment
+venv/
+.venv/
+
+# User data
+users.json
+
+# Misc
+*.bak
+*.swp
+*.tmp
+
+# Images
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Frontend build
+/dist/
+/build/
+
+# Ignore task-requirements folder images
+/task-requirements/*.PNG
+/task-requirements/*.png
