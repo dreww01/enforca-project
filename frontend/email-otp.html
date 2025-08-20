@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -18,6 +18,48 @@
       placeholder="------" />
     <button class="verify-btn">Verify</button>
     <a href="#" class="resend-link" id="resend">Resend code</a>
+  </div>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OTP Verification</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+
+<body>
+  <!-- OTP VERIFICATION -->
+  <div class="container">
+    <form id="otp-form" autocomplete="off">
+      <h1>Verify Your Email</h1>
+      <p>We've sent a verification code to:</p>
+      <p><strong id="user-email">user@example.com</strong></p>
+
+      <div class="input-control">
+        <label for="otp">Enter 6-digit code</label>
+        <input type="text" id="otp" class="otp-input" maxlength="6" pattern="\d{6}" autocomplete="off"
+          placeholder="------" required />
+        <div class="error"></div>
+      </div>
+
+      <button type="submit" class="verify-btn" cursor="pointer">
+        Verify Code
+      </button>
+
+      <p>Didn't receive the code? <a href="#" id="resend">Resend Code</a></p>
+
+      <p>
+        <a href="registration.html">Back to Registration</a>
+        <a href="login.html">Back to Login</a>
+      </p>
+    </form>
   </div>
 </body>
 

@@ -16,7 +16,16 @@ SENDER_MAIL = os.getenv("EMAIL_USER", "")
 SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
 SMTP_PORT = int(os.getenv("SMTP_PORT", 587))
 
+# Check if SMTP settings are properly set
+if not SMTP_HOST:
+    logging.error("SMTP host is not set. Please configure 'SMTP_HOST' in your environment variables.")
+if not SENDER_MAIL:
+    logging.error("Sender email (EMAIL_USER) is not set.")
+if not SMTP_PORT:
+    logging.error("SMTP port is not set.")
 
+
+# function to send email
 def send_email(to_email, subject, message):
     msg = MIMEText(message)
     msg["Subject"] = subject

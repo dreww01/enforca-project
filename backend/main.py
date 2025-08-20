@@ -5,6 +5,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 import logging
 
+# routers
 from routes.login import router as login_router
 from routes.register import router as register_router
 from routes.logout import router as logout_router

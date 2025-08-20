@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Login</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+    <!-- LOGIN -->
+    <div class="container">
+        <form id="login-form" autocomplete="off">
+            <h1>User Login</h1>
+            <div class="input-control">
+                <label for="login-username">Username</label>
+                <input type="text" name="username" id="login-username" placeholder="Enter your username" required />
+                <div class="error"></div>
+            </div>
+            <div class="input-control">
+                <label for="login-password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" name="password" id="login-password" placeholder="Enter your password"
+                        required />
+                    <button type="button" id="toggle-login-password" aria-label="Toggle password visibility">
+                        Show
+                    </button>
+                </div>
+                <div class="error"></div>
+            </div>
+            <button type="submit" id="login-btn" cursor="pointer">Login</button>
+            <p>
+                Don't have an account?
+                <a href="registration.html" id="show-register">Register here</a>
+            </p>
+        </form>
+    </div>
+</body>
+
+</html>
