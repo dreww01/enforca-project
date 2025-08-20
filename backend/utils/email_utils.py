@@ -15,6 +15,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(mess
 SENDER_MAIL = os.getenv("EMAIL_USER", "")
 SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
 SMTP_PORT = int(os.getenv("SMTP_PORT", 587))
+PASSWORD = os.getenv("EMAIL_PASSWORD")
 
 # Check if SMTP settings are properly set
 if not SMTP_HOST:
@@ -23,6 +24,8 @@ if not SENDER_MAIL:
     logging.error("Sender email (EMAIL_USER) is not set.")
 if not SMTP_PORT:
     logging.error("SMTP port is not set.")
+if not PASSWORD:
+    logging.error("Google App Password is not set.")
 
 
 # function to send email
@@ -35,7 +38,7 @@ def send_email(to_email, subject, message):
     try:
         with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
             server.starttls()
-            server.login(SENDER_MAIL, os.getenv("EMAIL_PASSWORD"))
+            server.login(SENDER_MAIL, PASSWORD)
             server.sendmail(msg["From"], [to_email], msg.as_string())
         logging.info(f"Email sent to {to_email} with subject '{subject}'")
     except Exception as e:

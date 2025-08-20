@@ -37,7 +37,7 @@ def resend_otp(request: ResendOTPRequest):
 
         message = f"Your OTP code is: {otp}"
         send_email(user["email"], "Resend OTP", message)
-        logging.info(f"OTP resent to user '{user['username']}'.")
+        logging.info(f"OTP resent to user '{user['username']}', email: {user['email']}.")
         return {"message": "OTP resent successfully"}
     
     except Exception as e:

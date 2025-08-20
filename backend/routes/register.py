@@ -1,5 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends
 import logging
+import bcrypt
+import re
 from models.user_models import RegisterRequest, VerifyOTPRequest
 from database.users import load_users, save_users
 from auth.otp import generate_otp
@@ -17,38 +19,79 @@ router = APIRouter(
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
 
 
-
-
-
+# Register endpoint with password validation and hashing
 @router.post("/register")
 def register(request: RegisterRequest):
-    """Register a new user and send OTP to email."""
     try:
         users = load_users()
+
+        # Check if name already exists
+        if any(u["name"] == request.name for u in users):
+            logging.warning(f"Registration failed: Username '{request.name}' already exists.")
+            raise HTTPException(status_code=400, detail="name already exists")
+
+        # Check if username already exists
         if any(u["username"] == request.username for u in users):
             logging.warning(f"Registration failed: Username '{request.username}' already exists.")
             raise HTTPException(status_code=400, detail="Username already exists")
 
+
+        # Check if email already exists
+        if any(u["email"] == request.email for u in users):
+            logging.warning(f"Registration failed: Email '{request.email}' already exists.")
+            raise HTTPException(status_code=400, detail="Email already exists")
+
+
+        # ✅ Validate password
+        password = request.password
+
+        # Check if password is at least 8 characters long
+        if not password or len(password.strip()) < 8:
+            raise HTTPException(status_code=400, detail="Password must be at least 8 characters long")
+
+        # Check if password contains at least one number
+        if not re.search(r"[0-9]", password):
+            raise HTTPException(status_code=400, detail="Password must contain at least one number")
+
+        # Check if password contains at least one uppercase letter
+        if not re.search(r"[A-Z]", password):
+            raise HTTPException(status_code=400, detail="Password must contain at least one uppercase letter")
+
+        # Check if password contains at least one lowercase letter
+        if not re.search(r"[a-z]", password):
+            raise HTTPException(status_code=400, detail="Password must contain at least one lowercase letter")
+
+        # Check if password contains at least one special character
+        if not re.search(r"[!@#$%^&*(),.?\":{}|<>]", password):
+            raise HTTPException(status_code=400, detail="Password must contain at least one special character")
+
+        # Hash password using bcrypt
+        hashed_password = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
+
+        # Generate OTP and expiry
         otp = generate_otp()
         otp_expiry = (datetime.utcnow() + timedelta(minutes=20)).isoformat()
 
+        # Create new user dictionary
         new_user = {
             "name": request.name,
             "username": request.username,
-            "password": request.password,
+            "password": hashed_password,  
             "email": request.email,
             "otp": otp,
             "otp_expiry": otp_expiry,
             "is_verified": False,
         }
+
         users.append(new_user)
         save_users(users)
+
 
         # Send OTP email
         message = f"Your OTP code is: {otp}, Code expires in 20 minutes."
         send_email(request.email, "Account Verification OTP", message)
-        logging.info(f"User '{request.username}' registered and OTP sent.")
-        return {"message": "User registered. OTP sent to email."}
+        logging.info(f"User '{request.username, request.email}' registered and OTP sent.")
+        return {"message": "User registered. OTP sent to email.", "email": request.email}
     
     except Exception as e:
         logging.error(f"Registration error: {e}")

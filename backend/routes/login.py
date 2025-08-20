@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends
 import logging
+import bcrypt
 from models.user_models import LoginRequest, VerifyLoginOTPRequest
 from database.users import load_users, save_users
 from auth.otp import generate_otp
@@ -27,7 +28,9 @@ def login(request: LoginRequest):
         if not user:
             logging.warning(f"Login failed: User with email '{request.email}' not found.")
             raise HTTPException(status_code=404, detail="User not found")
-        if user["password"] != request.password:
+        
+        # Validate password- to make sure it matches the hashed password in the database
+        if not bcrypt.checkpw(request.password.encode('utf-8'), user["password"].encode('utf-8')):
             logging.warning(f"Login failed: Invalid password for user '{request.email}'.")
             raise HTTPException(status_code=400, detail="Invalid password")
 
