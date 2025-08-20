@@ -1,0 +1,7 @@
+Python 3.7+
+FastAPI 0.63.0+
+Pydantic 1.8.2+
+SQLAlchemy 1.4.26+
+Alembic 1.7.5+
+Python-Jose 3.3.0+
+Passlib 1.7.4+
