@@ -55,7 +55,7 @@ This is a production-ready backend authentication system built with **FastAPI**,
 
 ### System Requirements
 - **Python**: 3.8+
-- **Database**: SQLite (development) / PostgreSQL (production)
+- **Database**: Json based Database (development) / PostgreSQL (production)
 - **Email**: SMTP server (Gmail recommended)
 
 ### Python Dependencies
@@ -160,7 +160,7 @@ ACCESS_TOKEN_EXPIRE_MINUTES=30
 REFRESH_TOKEN_EXPIRE_DAYS=7
 
 # =============================================================================
-# DATABASE SETTINGS
+# DATABASE SETTINGS (TO BE ADDED)
 # =============================================================================
 # For Development (SQLite)
 DATABASE_URL=sqlite:///./app.db
@@ -200,12 +200,6 @@ LOG_LEVEL=INFO
 LOG_FILE=logs/app.log
 ```
 
-### 3. Generate Secret Key
-```bash
-# Generate a secure secret key
-python -c "import secrets; print(secrets.token_urlsafe(32))"
-```
-
 ## 📧 Email Setup (Gmail)
 
 ### Step 1: Enable 2-Factor Authentication
@@ -242,7 +236,7 @@ print('Email test completed!')
 "
 ```
 
-## 🗄️ Database Setup
+## 🗄️ Database Setup (TO BE ADDED)
 
 ### 1. Initialize Alembic (First Time Only)
 ```bash
