@@ -28,7 +28,7 @@ This is a production-ready backend authentication system built with **FastAPI**,
 
 ### Core Authentication
 - ✅ User registration with email verification
-- ✅ Secure login with JWT tokens
+- ✅ Secure login with Session tokens
 - ✅ Password reset via email
 - ✅ Email verification with OTP
 - ✅ Token refresh functionality
@@ -36,9 +36,8 @@ This is a production-ready backend authentication system built with **FastAPI**,
 
 ### Security Features
 - 🔐 Password hashing with bcrypt
-- 🔑 JWT token-based authentication
+- 🔑 Session-based authentication
 - 📧 Email verification required
-- 🚫 Rate limiting on sensitive endpoints
 - 🛡️ Input validation and sanitization
 - 🔒 Secure password requirements
 
@@ -47,7 +46,11 @@ This is a production-ready backend authentication system built with **FastAPI**,
 - 🚨 Structured error handling
 - 📝 API documentation (Swagger/OpenAPI)
 - 🧪 Unit and integration tests
-- 🔄 Database migrations with Alembic
+
+
+###Features to Add
+- 🚫 Rate limiting on sensitive endpoints
+- - 🔄 Database migrations with Alembic
 
 ## 📋 Requirements
 
