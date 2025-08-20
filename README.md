@@ -47,10 +47,9 @@ This is a production-ready backend authentication system built with **FastAPI**,
 - 📝 API documentation (Swagger/OpenAPI)
 - 🧪 Unit and integration tests
 
-
-###Features to Add
+### Features to Add
 - 🚫 Rate limiting on sensitive endpoints
-- - 🔄 Database migrations with Alembic
+- 🔄 Database migrations with Alembic
 
 ## 📋 Requirements
 
